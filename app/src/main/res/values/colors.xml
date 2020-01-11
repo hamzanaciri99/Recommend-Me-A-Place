@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5352ed</color>
+    <color name="colorPrimaryDark">#5352ed</color>
+    <color name="colorAccent">#cc95a5a6</color>
+    <color name="Aa">#FFCDD2</color>
+    <color name="Bb">#F8BBD0</color>
+    <color name="Cc">#E1BEE7</color>
+    <color name="Dd">#D1C4E9</color>
+    <color name="Ee">#C5CAE9</color>
+    <color name="Ff">#BBDEFB</color>
+    <color name="Gg">#B3E5FC</color>
+    <color name="Hh">#B2EBF2</color>
+    <color name="Ii">#B2DFDB</color>
+    <color name="Jj">#C8E6C9</color>
+    <color name="Kk">#DCEDC8</color>
+    <color name="Ll">#F0F4C3</color>
+    <color name="Mm">#F8BBD0</color>
+    <color name="Nn">#FFECB3</color>
+    <color name="Oo">#FFE0B2</color>
+    <color name="Pp">#FFCCBC</color>
+    <color name="Qq">#cc95a5a6</color>
+    <color name="Rr">#FFCDD2</color>
+    <color name="Ss">#F8BBD0</color>
+    <color name="Tt">#E1BEE7</color>
+    <color name="Uu">#D1C4E9</color>
+    <color name="Vv">#C5CAE9</color>
+    <color name="Ww">#B3E5FC</color>
+    <color name="Xx">#B2DFDB</color>
+    <color name="Yy">#FFF9C4</color>
+    <color name="Zz">#FFECB3</color>
+</resources>
