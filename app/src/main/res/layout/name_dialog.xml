@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrats"
-        android:text="Choose a name for this place"
+        android:gravity="center"
+        android:text="How'd you like to call this place ?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         android:textSize="19sp" />
@@ -41,7 +42,7 @@
         android:layout_gravity="right"
         android:background="#00FFFFFF"
         android:fontFamily="@font/montserrats"
-        android:text="Button"
+        android:text="Add"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 </LinearLayout>

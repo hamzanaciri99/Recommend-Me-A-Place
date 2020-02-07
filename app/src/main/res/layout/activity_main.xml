@@ -6,58 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="5dp"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_lights"
-            android:text="Recommended Places"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="18dp" />
-    </androidx.appcompat.widget.Toolbar>
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="55dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/places_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layoutAnimation="@anim/layout_animation"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:clickable="true"
-        android:elevation="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_plus_large" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

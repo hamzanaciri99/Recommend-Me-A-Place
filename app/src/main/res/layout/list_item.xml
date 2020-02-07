@@ -2,60 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="2dp"
     android:paddingRight="10dp"
     android:paddingBottom="2dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginRight="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/code"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/ccode_aa"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center"
-
-            android:text="MA"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:typeface="sans" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="3dp">
+        android:fontFamily="@font/montserrats"
+        android:text="Rabat"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:typeface="monospace" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrats"
-            android:text="Rabat"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:typeface="monospace" />
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light_italic"
+        android:text="LatLng"
+        android:textSize="12sp"
+        android:typeface="monospace" />
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light_italic"
-            android:text="LatLng"
-            android:textSize="12sp"
-            android:typeface="monospace" />
-
-    </LinearLayout>
+    <RatingBar
+        android:id="@+id/ratingBar3"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5" />
 
 </LinearLayout>

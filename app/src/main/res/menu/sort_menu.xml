@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sort_by_id"
+        android:icon="@drawable/ic_hashtag"
+        android:title="Sort by ID" />
+
+    <item android:id="@+id/sort_by_rate"
+        android:icon="@drawable/ic_heart"
+        android:title="Sort by Rate" />
+</menu>

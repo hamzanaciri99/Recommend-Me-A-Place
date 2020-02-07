@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="68dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/toolbar2"
+        android:layout_alignParentBottom="false"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#ffffff"
+        android:elevation="5dp"
+        android:src="@drawable/ic_list"
+        app:backgroundTint="#ffffff"
+        app:maxImageSize="35dp"
+        app:srcCompat="@drawable/ic_list" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="28dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <Button
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/toolbar2"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="sort by"
+        android:drawableLeft="@drawable/ic_sort_az"
+        android:onClick="showPopup"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/toolbar2"
+        android:layout_alignParentBottom="false"
+        android:background="#ffffff"
+        android:backgroundTint="#ffffff"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/places_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutAnimation="@anim/layout_animation"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,16 +1,26 @@
 package com.example.recommendmeaplace;
 
-public class MyPlace {
-    public String name, ccode, address;
-    public double lat, lng;
+import android.graphics.Bitmap;
 
-    public MyPlace(String name, double lat, double lng, String ccode, String address) {
+public class MyPlace {
+
+    static MyPlace current = null;
+
+    private String name, address;
+    private double lat, lng, rating;
+    private int id;
+    private Bitmap image;
+
+    public MyPlace(String name, double lat, double lng, String address, Bitmap image,  double rating, int id) {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
-        this.ccode = ccode;
         this.address = address;
+        this.rating = rating;
+        this.id = id;
+        this.image = image;
     }
+
 
     public String getName() {
         return name;
@@ -24,11 +34,18 @@ public class MyPlace {
         return lng;
     }
 
-    public String getCcode() {
-        return ccode;
-    }
 
     public String getAddress() {
         return address;
     }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Bitmap getImage() { return image; }
 }
