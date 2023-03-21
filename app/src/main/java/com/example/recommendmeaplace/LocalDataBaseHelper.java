@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,8 +35,7 @@ public class LocalDataBaseHelper {
             File storagePath = context.getFilesDir();
             String myDbPath = storagePath + "/" + "recommendmeaplace.db";
 
-            db = SQLiteDatabase.openDatabase(myDbPath, null,
-                    SQLiteDatabase.CREATE_IF_NECESSARY);
+            db = SQLiteDatabase.openDatabase(myDbPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -47,9 +44,10 @@ public class LocalDataBaseHelper {
 
     public void init() {
         try {
-            db.execSQL("CREATE TABLE IF NOT EXISTS " +
-                    "places(`id` int CONSTRAINT primary_key PRIMARY KEY, `name` varchar(30), `lat` float, `lng` float, `address` text," +
-                    " `image` blob, `rating` float);");
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS places(`id` int CONSTRAINT primary_key PRIMARY KEY,"
+                        + " `name` varchar(30), `lat` float, `lng` float, `address` text, `image`"
+                        + " blob, `rating` float);");
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
@@ -58,16 +56,19 @@ public class LocalDataBaseHelper {
     public void synchronize(ArrayList<MyPlace> places) {
         try {
             db.execSQL("DROP TABLE IF EXISTS places;");
-            db.execSQL("CREATE TABLE IF NOT EXISTS places(`id` int CONSTRAINT primary_key PRIMARY KEY, `name` varchar(30), `lat` float, " +
-                    "`lng` float, `address` text,`image` blob, `rating` float);");
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS places(`id` int CONSTRAINT primary_key PRIMARY KEY,"
+                        + " `name` varchar(30), `lat` float, `lng` float, `address` text,`image`"
+                        + " blob, `rating` float);");
 
-            for(MyPlace place : places) {
+            for (MyPlace place : places) {
                 Bitmap bmp = getBitmapImage(place.getLat(), place.getLng());
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 byte[] img = bos.toByteArray();
 
                 ContentValues values = new ContentValues();
+
                 values.put("image", img);
                 values.put("id", place.getId());
                 values.put("name", place.getName());
@@ -76,9 +77,22 @@ public class LocalDataBaseHelper {
                 values.put("address", place.getAddress());
                 values.put("rating", place.getRating());
 
-                String sql = "INSERT INTO places(id, name, lat, lng, rating, address, image) VALUES(" + place.getId() +
-                        ", '" + place.getName() + "', " + place.getLat() + ", " + place.getLng() +
-                        ", '" + place.getRating() + "', '" + place.getAddress() + "'," + img + ");";
+                String sql =
+                        "INSERT INTO places(id, name, lat, lng, rating, address, image) VALUES("
+                                + place.getId()
+                                + ", '"
+                                + place.getName()
+                                + "', "
+                                + place.getLat()
+                                + ", "
+                                + place.getLng()
+                                + ", '"
+                                + place.getRating()
+                                + "', '"
+                                + place.getAddress()
+                                + "',"
+                                + img
+                                + ");";
                 Log.e(TAG, sql);
                 db.insert("places", null, values);
             }
@@ -107,7 +121,7 @@ public class LocalDataBaseHelper {
                         rating = cursor.getDouble(cursor.getColumnIndex("rating"));
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 byte[] bmp = cursor.getBlob(cursor.getColumnIndex("image"));
-                Bitmap image =BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+                Bitmap image = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
 
                 lat = Double.parseDouble(String.format("%.4f", lat));
                 lng = Double.parseDouble(String.format("%.4f", lng));
@@ -127,7 +141,7 @@ public class LocalDataBaseHelper {
 
         try {
             String[] cols = {"id", "name", "lat", "lng", "address", "rating", "image"};
-            String[] whereArgs = {""+pid};
+            String[] whereArgs = {"" + pid};
             Cursor cursor = db.query("places", cols, "id = ?", whereArgs, null, null, null);
 
             cursor.moveToPosition(-1);
@@ -139,7 +153,7 @@ public class LocalDataBaseHelper {
                         rating = cursor.getDouble(cursor.getColumnIndex("rating"));
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 byte[] bmp = cursor.getBlob(cursor.getColumnIndex("image"));
-                Bitmap image =BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
+                Bitmap image = BitmapFactory.decodeByteArray(bmp, 0, bmp.length);
 
                 lat = Double.parseDouble(String.format("%.4f", lat));
                 lng = Double.parseDouble(String.format("%.4f", lng));
@@ -154,16 +168,22 @@ public class LocalDataBaseHelper {
         return place;
     }
 
-
     public Bitmap getBitmapImage(double lat, double lng) {
         Bitmap bmp = null;
         InputStream inputStream = null;
         try {
-            URL mapUrl = new URL("https://maps.googleapis.com/maps/api/staticmap?center="
-                    + lat + "," + lng +
-                    "&zoom=17&size=600x600" +
-                    "&markers=color:blue%7C"+ lat + "," + lng +
-                    "&sensor=false&key=AIzaSyCyFi0XzVU_EapWGRx6W_Xd58tyDIPDt2M");
+            URL mapUrl =
+                    new URL(
+                            "https://maps.googleapis.com/maps/api/staticmap?center="
+                                    + lat
+                                    + ","
+                                    + lng
+                                    + "&zoom=17&size=600x600"
+                                    + "&markers=color:blue%7C"
+                                    + lat
+                                    + ","
+                                    + lng
+                                    + "&sensor=false&key=AIzaSyCyFi0XzVU_EapWGRx6W_Xd58tyDIPDt2M");
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) mapUrl.openConnection();
 

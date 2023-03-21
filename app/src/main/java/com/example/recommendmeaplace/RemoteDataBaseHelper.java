@@ -6,12 +6,10 @@ import android.os.AsyncTask;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,7 +38,12 @@ public class RemoteDataBaseHelper {
     public RemoteDataBaseHelper(Context context) {
         this.context = context;
         dialog = new ProgressDialog(context);
-        androidId = new BigInteger(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID), 16).longValue();
+        androidId =
+                new BigInteger(
+                                Settings.Secure.getString(
+                                        context.getContentResolver(), Settings.Secure.ANDROID_ID),
+                                16)
+                        .longValue();
     }
 
     public RemoteDataBaseHelper(Context context, Boolean isService) {
@@ -62,9 +65,15 @@ public class RemoteDataBaseHelper {
                 boolean status = false;
                 try {
 
-                    String postParams = "name=" + myPlaces[0].getName() + "&lat=" +
-                            myPlaces[0].getLat() + "&lng=" + myPlaces[0].getLng()
-                            + "&address=" + myPlaces[0].getAddress();
+                    String postParams =
+                            "name="
+                                    + myPlaces[0].getName()
+                                    + "&lat="
+                                    + myPlaces[0].getLat()
+                                    + "&lng="
+                                    + myPlaces[0].getLng()
+                                    + "&address="
+                                    + myPlaces[0].getAddress();
 
                     URL url = new URL(POST_URL);
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -83,9 +92,10 @@ public class RemoteDataBaseHelper {
                     }
 
                     int responseCode = urlConnection.getResponseCode();
-                    if(responseCode == HttpURLConnection.HTTP_OK) {
-                        BufferedReader in = new BufferedReader(new InputStreamReader(
-                                urlConnection.getInputStream()));
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        BufferedReader in =
+                                new BufferedReader(
+                                        new InputStreamReader(urlConnection.getInputStream()));
                         String inputLine;
                         StringBuffer response = new StringBuffer();
 
@@ -95,7 +105,12 @@ public class RemoteDataBaseHelper {
                         in.close();
 
                         JsonElement jelement = new JsonParser().parse(response.toString());
-                        status = jelement.getAsJsonObject().get("status").toString().substring(1).startsWith("success");
+                        status =
+                                jelement.getAsJsonObject()
+                                        .get("status")
+                                        .toString()
+                                        .substring(1)
+                                        .startsWith("success");
 
                         urlConnection.disconnect();
                     }
@@ -130,10 +145,13 @@ public class RemoteDataBaseHelper {
                 boolean status = false;
                 try {
 
-
-                    String postParams = "place_id=" + ((int) Math.floor(params[0])) +
-                            "&rating=" + params[1] +
-                            "&user_id=" + androidId;
+                    String postParams =
+                            "place_id="
+                                    + ((int) Math.floor(params[0]))
+                                    + "&rating="
+                                    + params[1]
+                                    + "&user_id="
+                                    + androidId;
 
                     Log.e(TAG, postParams);
 
@@ -154,9 +172,10 @@ public class RemoteDataBaseHelper {
                     }
 
                     int responseCode = urlConnection.getResponseCode();
-                    if(responseCode == HttpURLConnection.HTTP_OK) {
-                        BufferedReader in = new BufferedReader(new InputStreamReader(
-                                urlConnection.getInputStream()));
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        BufferedReader in =
+                                new BufferedReader(
+                                        new InputStreamReader(urlConnection.getInputStream()));
                         String inputLine;
                         StringBuffer response = new StringBuffer();
 
@@ -166,7 +185,12 @@ public class RemoteDataBaseHelper {
                         in.close();
 
                         JsonElement jelement = new JsonParser().parse(response.toString());
-                        status = jelement.getAsJsonObject().get("status").toString().substring(1).startsWith("success");
+                        status =
+                                jelement.getAsJsonObject()
+                                        .get("status")
+                                        .toString()
+                                        .substring(1)
+                                        .startsWith("success");
 
                         urlConnection.disconnect();
                     }
@@ -179,7 +203,8 @@ public class RemoteDataBaseHelper {
             @Override
             protected void onPostExecute(Boolean status) {
                 synchronize();
-                String message = (status) ? "Your vote has been added successfully" : "An error occurred";
+                String message =
+                        (status) ? "Your vote has been added successfully" : "An error occurred";
                 dialog.dismiss();
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             }
@@ -198,8 +223,9 @@ public class RemoteDataBaseHelper {
                     urlConnection.setDoInput(true);
                     urlConnection.connect();
 
-                    BufferedReader in = new BufferedReader(new InputStreamReader(
-                            urlConnection.getInputStream()));
+                    BufferedReader in =
+                            new BufferedReader(
+                                    new InputStreamReader(urlConnection.getInputStream()));
                     String inputLine;
                     StringBuffer response = new StringBuffer();
 
@@ -209,7 +235,7 @@ public class RemoteDataBaseHelper {
                     in.close();
 
                     Gson gson = new Gson();
-                    Type listType = new TypeToken<ArrayList<MyPlace>>() { }.getType();
+                    Type listType = new TypeToken<ArrayList<MyPlace>>() {}.getType();
                     ArrayList<MyPlace> placesList = gson.fromJson(response.toString(), listType);
 
                     LocalDataBaseHelper localDataBaseHelper = new LocalDataBaseHelper(context);
@@ -224,5 +250,4 @@ public class RemoteDataBaseHelper {
             }
         }.start();
     }
-
 }

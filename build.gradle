@@ -3,25 +3,34 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
-        
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
     }
 }
+
+
 
 allprojects {
     repositories {
         google()
-        jcenter()
-        
+        mavenCentral()
     }
 }
 
-task clean(type: Delete) {
+
+apply plugin: 'com.diffplug.spotless'
+spotless {
+    java {
+        target 'app/src/*/java/**/*.java'
+        googleJavaFormat('1.16.0').aosp().reflowLongStrings().groupArtifact('com.google.googlejavaformat:google-java-format')
+    }
+}
+
+
+task cleans(type: Delete) {
     delete rootProject.buildDir
 }

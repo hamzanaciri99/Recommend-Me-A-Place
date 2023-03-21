@@ -11,7 +11,14 @@ public class MyPlace {
     private int id;
     private Bitmap image;
 
-    public MyPlace(String name, double lat, double lng, String address, Bitmap image,  double rating, int id) {
+    public MyPlace(
+            String name,
+            double lat,
+            double lng,
+            String address,
+            Bitmap image,
+            double rating,
+            int id) {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
@@ -20,7 +27,6 @@ public class MyPlace {
         this.id = id;
         this.image = image;
     }
-
 
     public String getName() {
         return name;
@@ -34,7 +40,6 @@ public class MyPlace {
         return lng;
     }
 
-
     public String getAddress() {
         return address;
     }
@@ -47,5 +52,7 @@ public class MyPlace {
         return id;
     }
 
-    public Bitmap getImage() { return image; }
+    public Bitmap getImage() {
+        return image;
+    }
 }
